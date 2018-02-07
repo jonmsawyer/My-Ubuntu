@@ -18,13 +18,13 @@
 #include <string.h>
 char *rev_pal(char *pal, char *str);
 
-int palin_func()
+int palin_func_fgets()
 {
 	char str[100]; // user input string
 	char pal[100]; // reversed string of `str' input string
 	char *r_pal; // pointer to what eventually becomes pal[0]
 
-//Asking for user input, saved to 'str'
+	//Asking for user input, saved to 'str'
 	printf("Please enter a string to check for palindrome:\n");
 	fgets(str, 100, stdin); // use fgets here as it checks for buffer overflows
 	str[strlen(str) - 1] = '\0'; // chop off the newline entered from stdin
@@ -34,8 +34,7 @@ int palin_func()
 	printf("The original string is \n%s\n", str);
 	printf("The reversed string is \n%s\n", r_pal);
 
-	if(strcmp(r_pal, str) == 0) // Don't do r_pal == str, as you're comparing string pointers.
-                                    // To compare strings, use strcmp().
+	if(strcmp(r_pal, str) == 0) // comparing strings using strcmp
 	{
 		printf("The string is a palindrome!\n");
 		return 0;
@@ -46,6 +45,27 @@ int palin_func()
 		return 1;
 	}
 }
+int palin_func_scanf()
+{
+	char scan_str[100]; // string for scanf input
+	char scan_pal[100]; // holder variable for reversed scanf
+	char *r_scan_pal;
 
+	printf("Please enter a word to check for palindrome:\n");
+	scanf("%s", scan_str);
+	r_scan_pal = rev_pal(scan_str, scan_pal); // reverse the scanf input
 
+	printf("The original string is \n%s\n", scan_str);
+	printf("The reversed string is \n%s\n", r_scan_pal);
 
+	if(strcmp(r_scan_pal, scan_str) == 0) // comparing strings using strcmp
+	{
+		printf("The string is a palindrome!\n");
+		return 0;
+	}
+	else
+	{
+		printf("The string is NOT a palindrome!\n");
+		return 1;
+	}
+}

@@ -15,11 +15,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-int palin_func();
-
+int palin_func_scanf();
+int palin_func_fgets();
 
 int main(void) {
-	palin_func();
+	palin_func_fgets();
+	palin_func_scanf();
+
 
 	return EXIT_SUCCESS;
 }
