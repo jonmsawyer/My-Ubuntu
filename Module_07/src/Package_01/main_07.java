@@ -9,6 +9,7 @@ public class main_07
 		for(int i = 0; i < 1; i++)
 		{
 			System.out.println("============================================================");
+			
 			paddle paddle_01 = new paddle();
 			ball ball_01 = new ball();
 			
@@ -22,7 +23,9 @@ public class main_07
 					System.out.println("Ka-Ping!");
 				}
 			}
+			
 			TimeUnit.MILLISECONDS.sleep(250);
+			
 			System.out.println("============================================================");
 		}
 	}

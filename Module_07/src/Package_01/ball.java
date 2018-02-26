@@ -6,16 +6,12 @@ public class ball extends PaddleBall
 {
 	int newLength()
 	{
-		int randomLength = 1;
-		
-		return randomLength;
+		return 1;
 	}
 	
 	int newPosition()
 	{
-		int randomPosition = ThreadLocalRandom.current().nextInt(5, 51);
-		
-		return randomPosition;
+		return ThreadLocalRandom.current().nextInt(5, 51);
 	}
 	
 	public void print()
@@ -24,6 +20,7 @@ public class ball extends PaddleBall
 		{
 			System.out.print(" ");
 		}
+		
 		for(int i = 0; i < this.length; i++)
 		{
 			System.out.print("O");
