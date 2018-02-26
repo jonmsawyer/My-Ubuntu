@@ -7,8 +7,8 @@ abstract class PaddleBall
 	
 	public PaddleBall()
 	{
-		length = this.newLength();
-		position = this.newPosition();
+		this.newLength();
+		this.newPosition();
 	}
 	
 	int getLength()
@@ -21,7 +21,17 @@ abstract class PaddleBall
         return this.position;
 	}
 	
-	abstract int newLength();
-	abstract int newPosition();
+	void setLength(int l)
+	{
+        this.length = l;
+	}
+	
+	void setPosition(int p)
+	{
+	    this.position = p;
+	}
+	
+	abstract void newLength();
+	abstract void newPosition();
 	abstract public void print();
 }

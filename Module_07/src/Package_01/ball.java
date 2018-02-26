@@ -4,14 +4,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ball extends PaddleBall
 {
-	int newLength()
+	void newLength()
 	{
-		return 1;
+		this.setLength(1);
 	}
 	
-	int newPosition()
+	void newPosition()
 	{
-		return ThreadLocalRandom.current().nextInt(5, 51);
+		this.setPosition(ThreadLocalRandom.current().nextInt(5, 51));
 	}
 	
 	public void print()

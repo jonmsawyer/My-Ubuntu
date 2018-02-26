@@ -6,13 +6,13 @@ public class main_07
 {
 	public static void main(String args[]) throws InterruptedException
 	{		
-		for(int i = 0; i < 1; i++)
+        paddle paddle_01 = new paddle();
+        ball ball_01 = new ball();
+        
+		for(int i = 0; i < 100; i++)
 		{
 			System.out.println("============================================================");
-			
-			paddle paddle_01 = new paddle();
-			ball ball_01 = new ball();
-			
+						
 			paddle_01.print();
 			ball_01.print();
 			
@@ -27,6 +27,10 @@ public class main_07
 			TimeUnit.MILLISECONDS.sleep(250);
 			
 			System.out.println("============================================================");
+			
+			paddle_01.newLength();
+			paddle_01.newPosition();
+			ball_01.newPosition();
 		}
 	}
 }
