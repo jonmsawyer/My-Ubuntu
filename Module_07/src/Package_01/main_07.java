@@ -9,9 +9,10 @@ public class main_07
         paddle paddle_01 = new paddle();
         ball ball_01 = new ball();
         
+        System.out.println("============================================================");
+        
 		for(int i = 0; i < 100; i++)
 		{
-			System.out.println("============================================================");
 						
 			paddle_01.print();
 			ball_01.print();
@@ -26,7 +27,7 @@ public class main_07
 			
 			TimeUnit.MILLISECONDS.sleep(250);
 			
-			System.out.println("============================================================");
+			System.out.println("\n============================================================");
 			
 			paddle_01.newLength();
 			paddle_01.newPosition();
