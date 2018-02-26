@@ -2,7 +2,7 @@ package Package_01;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class length_01 extends paddle
+public class length_01
 {
 	int lengthLength;
 

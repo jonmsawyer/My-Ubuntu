@@ -12,12 +12,12 @@ public class main_07
 			paddle paddle_01 = new paddle();
 			ball ball_01 = new ball();
 			
-			paddle_01.paddlePrint(paddle_01.paddleLength, paddle_01.paddlePosition);
-			ball_01.ballPrint(ball_01.ballLength, ball_01.ballPosition);
+			paddle_01.print();
+			ball_01.print();
 			
-			if(ball_01.ballPosition >= paddle_01.paddlePosition)
+			if(ball_01.position >= paddle_01.position)
 			{
-				if(ball_01.ballPosition + 1 <= paddle_01.paddlePosition + paddle_01.paddleLength)
+				if(ball_01.position + 1 <= paddle_01.position + paddle_01.length)
 				{
 					System.out.println("Ka-Ping!");
 				}

@@ -2,7 +2,7 @@ package Package_01;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class position_01 extends paddle
+public class position_01
 {
 	int positionPosition;
 
