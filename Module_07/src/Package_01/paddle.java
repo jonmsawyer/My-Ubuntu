@@ -16,12 +16,12 @@ public class paddle extends PaddleBall
 	
 	public void print()
 	{
-		for(int i = 0; i < this.position; i++)
+		for(int i = 0; i < this.getPosition(); i++)
 		{
 			System.out.print(" ");
 		}
 		
-		for(int i = 0; i < this.length; i++)
+		for(int i = 0; i < this.getLength(); i++)
 		{
 			System.out.print("X");
 		}

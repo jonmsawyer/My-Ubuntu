@@ -16,9 +16,9 @@ public class main_07
 			paddle_01.print();
 			ball_01.print();
 			
-			if(ball_01.position >= paddle_01.position)
+			if(ball_01.getPosition() >= paddle_01.getPosition())
 			{
-				if(ball_01.position + 1 <= paddle_01.position + paddle_01.length)
+				if(ball_01.getPosition() + 1 <= paddle_01.getPosition() + paddle_01.getLength())
 				{
 					System.out.println("Ka-Ping!");
 				}
