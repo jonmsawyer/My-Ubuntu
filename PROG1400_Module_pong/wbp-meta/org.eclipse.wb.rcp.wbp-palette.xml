@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<palette>
+	<category id="someUniqueId" name="Custom category" description="Category added for project PROG1400_Module_10" open="true">
+		<component class="javax.swing.JButton"/>
+		<component class="javax.swing.JRadioButton" name="Your name" description="You can write any description here."></component>
+	</category>
+</palette>
