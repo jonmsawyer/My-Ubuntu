@@ -12,6 +12,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 
+import java.util.Random;
+
 public class window extends JFrame implements KeyListener {
 
 	/**
@@ -37,12 +39,48 @@ public class window extends JFrame implements KeyListener {
 					frame.setMinimumSize(new Dimension(440, 300));
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.ballGo(frame.ballStart());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	
+	public static int ballStart()
+    {
+    	Random rand = new Random();
+    	int r = rand.nextInt(4) + 1;
+    	
+    	int ballDir = r;
+    	return ballDir;
+    }
+    
+    public void ballGo(int ballDir)
+    {
+    	int ballAmount;
+    	boolean ballExist = true;
+    	
+    	//while(ballExist)
+    	//{
+    		if(ballDir == 1)
+        	{
+        		panel_ball.setLocation(panel_ball.getLocation().x + 1, panel_ball.getLocation().y + 1);
+        	}
+        	if(ballDir == 2)
+        	{
+        		panel_ball.setLocation(panel_ball.getLocation().x + 1, panel_ball.getLocation().y - 1);
+        	}
+        	if(ballDir == 3)
+        	{
+        		panel_ball.setLocation(panel_ball.getLocation().x - 1, panel_ball.getLocation().y - 1);
+        	}
+        	if(ballDir == 4)
+        	{
+        		panel_ball.setLocation(panel_ball.getLocation().x - 1, panel_ball.getLocation().y + 1);
+        	}
+    	//}
+    }
 	
     public void keyReleased(KeyEvent event) {}    
     public void keyTyped(KeyEvent event) {}
@@ -63,7 +101,7 @@ public class window extends JFrame implements KeyListener {
                 panel_left.setLocation(panel_left.getLocation().x, panel_left.getLocation().y + dy);
                 break;
         }
-        
+        ballGo(ballStart());
         textFieldPaddle.setText("");
     }
     
