@@ -11,8 +11,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
-
-import java.util.Random;
+import javax.swing.Timer;
 
 public class window extends JFrame implements KeyListener {
 
@@ -20,6 +19,7 @@ public class window extends JFrame implements KeyListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	protected static final ActionListener frame = null;
 	private JTextField textFieldLeft;
 	private JTextField textFieldRight;
 	private JTextField textFieldHit;
@@ -39,48 +39,17 @@ public class window extends JFrame implements KeyListener {
 					frame.setMinimumSize(new Dimension(440, 300));
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.ballGo(frame.ballStart());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				// Set up Timer
+				timer = new Timer(50, frame); // Set time, and this object gets event
+				timer.setInitialDelay(100); // Initial wait
+				timer.setCoalesce(true); // Don't stack up events
+				timer.start(); // Start the timer object
 			}
 		});
 	}
-	
-	public static int ballStart()
-    {
-    	Random rand = new Random();
-    	int r = rand.nextInt(4) + 1;
-    	
-    	int ballDir = r;
-    	return ballDir;
-    }
-    
-    public void ballGo(int ballDir)
-    {
-    	int ballAmount;
-    	boolean ballExist = true;
-    	
-    	//while(ballExist)
-    	//{
-    		if(ballDir == 1)
-        	{
-        		panel_ball.setLocation(panel_ball.getLocation().x + 1, panel_ball.getLocation().y + 1);
-        	}
-        	if(ballDir == 2)
-        	{
-        		panel_ball.setLocation(panel_ball.getLocation().x + 1, panel_ball.getLocation().y - 1);
-        	}
-        	if(ballDir == 3)
-        	{
-        		panel_ball.setLocation(panel_ball.getLocation().x - 1, panel_ball.getLocation().y - 1);
-        	}
-        	if(ballDir == 4)
-        	{
-        		panel_ball.setLocation(panel_ball.getLocation().x - 1, panel_ball.getLocation().y + 1);
-        	}
-    	//}
-    }
 	
     public void keyReleased(KeyEvent event) {}    
     public void keyTyped(KeyEvent event) {}
@@ -88,21 +57,163 @@ public class window extends JFrame implements KeyListener {
     {
         int keyPress = event.getKeyCode();
         int dy = 10;
-        System.out.println("Key was pressed! " + String.valueOf(keyPress));
         
         switch(keyPress)
         {
             case KeyEvent.VK_UP:
                 // minus delta y because Y coordinates are top to bottom
-                panel_left.setLocation(panel_left.getLocation().x, panel_left.getLocation().y - dy);
-                break;
+            		//System.out.println(panel_left.getLocation().y);
+            	if(panel_left.getLocation().y > 45)
+            	{
+                    panel_left.setLocation(panel_left.getLocation().x, panel_left.getLocation().y - dy);
+                    break;
+            	}
+            	break;
             case KeyEvent.VK_DOWN:
                 // plus delta y because Y coordinates are top to bottom
-                panel_left.setLocation(panel_left.getLocation().x, panel_left.getLocation().y + dy);
-                break;
+            	
+            	if(panel_left.getLocation().y < 135)
+            	{
+            		panel_left.setLocation(panel_left.getLocation().x, panel_left.getLocation().y + dy);
+                	break;
+            	}
+            	break;
         }
-        ballGo(ballStart());
+        ballGo();
         textFieldPaddle.setText("");
+    }
+    
+//
+    
+    public void ballGo()
+    {
+    	int ballAmount = 1;
+    	boolean ballExist = true;
+    	boolean ballEx = true;
+    	
+    	boolean xFor = true;
+    	boolean yFor = true;
+    	
+    	Random rand = new Random();
+    	int ballDir = rand.nextInt(4) + 1;
+    	System.out.println(ballDir);
+    	
+    	if(ballDir == 1)
+    	{
+    		xFor = true;
+    		yFor = true;
+    	}
+    	if(ballDir == 2)
+    	{
+    		xFor = true;
+    		yFor = false;       		
+    	}
+    	if(ballDir == 3)
+    	{
+    		xFor = false;
+    		yFor = true;       		
+    	}
+    	if(ballDir == 4)
+    	{
+    		xFor = false;
+    		yFor = false;       		
+    	}
+    	
+    	while(ballExist)
+    	{
+    		System.out.println(panel_ball.getLocation().x);
+    		System.out.println(panel_ball.getLocation().y);
+        	if (xFor = true)
+        	{
+        		if(yFor = true)
+        		{
+        			panel_ball.setLocation(panel_ball.getLocation().x + ballAmount, panel_ball.getLocation().y + ballAmount);
+        			yFor = ballColY(yFor);
+        			xFor = ballColX(xFor);
+        			break;
+        		}        	
+        		if(yFor = false)
+        		{
+        			panel_ball.setLocation(panel_ball.getLocation().x + ballAmount, panel_ball.getLocation().y - ballAmount);
+        			yFor = ballColY(yFor);
+        			xFor = ballColX(xFor);
+        			break;
+        		}
+        		break;
+        	}
+        	
+        	if (xFor = false)
+        	{
+        		if(yFor = true)
+        		{
+        			panel_ball.setLocation(panel_ball.getLocation().x - ballAmount, panel_ball.getLocation().y + ballAmount);
+        			yFor = ballColY(yFor);
+        			xFor = ballColX(xFor);
+        			break;
+        		}
+        		if(yFor = false)
+        		{
+        			panel_ball.setLocation(panel_ball.getLocation().x - ballAmount, panel_ball.getLocation().y - ballAmount);
+        			yFor = ballColY(yFor);
+        			xFor = ballColX(xFor);
+        			break;
+        		}
+        		break;
+        	}
+    	}
+    	//hitCount
+    }
+    
+    public boolean ballColX(boolean xFor)
+    {
+    	boolean ballExists = true;
+    	
+    	if(panel_ball.getLocation().x >= 280)
+    	{
+    		xFor = false;
+    	}
+    	if(panel_ball.getLocation().x <= 50)
+    	{
+    		int x = paddleLeftPos();
+    		if(x == panel_ball.getLocation().x)
+    		{
+    			xFor = true;
+    		}
+    		else
+    		{
+    			ballExists = false;
+    		}
+    	}
+    	return xFor;
+    }
+    
+    public boolean ballColY(boolean yFor)
+    {
+    	boolean ballExists = true;
+    	
+    	if(panel_ball.getLocation().y >= 45)
+    	{
+    		yFor = false;
+    	}
+    	if(panel_ball.getLocation().y <= 135)
+    	{
+    		int x = paddleLeftPos();
+    		if(x == panel_ball.getLocation().y)
+    		{
+    			yFor = true;
+    		}
+    		else
+    		{
+    			ballExists = false;
+    		}
+    	}
+    	return yFor;
+    }
+    
+    public int paddleLeftPos()
+    {
+    	int x = panel_left.getLocation().y;
+    	return x;
     }
     
 	/**
